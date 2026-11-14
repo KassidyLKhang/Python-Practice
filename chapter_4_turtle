@@ -1,0 +1,378 @@
+from __future__ import print_function, division
+
+import turtle
+import math
+
+screen = turtle.Screen()
+
+"""
+bowser = turtle.Turtle()
+
+
+bowser.circle(100)
+bowser.fd(200)
+bowser.circle(100)
+
+def square(turtle, length):
+    for i in range(4):
+        turtle.fd(length)
+        turtle.lt(90)
+
+square(bowser, 200)
+
+
+
+
+def polygon(turtle, length, n):
+    angle = 360/n
+    for i in range(n):
+        turtle.fd(length)
+        turtle.lt(angle)
+
+#polygon(turtle, 200, 5)
+
+
+def circle(turtle, radius):
+    circumference = 2 * math.pi * radius
+    n = int(circumference / 3) + 3 # This is apparently the answer
+    length = circumference / n
+
+    polygon(turtle, length, n)
+    
+    #circumference = length * n
+
+    #length * n = circumference
+    #2 * pi * r = length * n
+    #2 * pi * r = length * angle
+
+    #2 * math.pi * radius = cirumference
+    #length = circumference / n
+    #n = circumference / length
+    #n / circumference = 1 / length
+
+#circle()
+
+circle(turtle, 40)
+"""
+
+"""
+
+def triangle_no_angle(turtle, length):
+    for i in range(3):
+        turtle.fd(length)
+        turtle.lt(120)
+
+#triangle_no_angle(turtle, 50)
+
+def triangle(turtle, length, angle):
+    for i in range(3):
+        turtle.fd(length)
+        turtle.lt(angle)
+
+triangle(turtle, 100, 120)
+"""
+
+#Not the solution, but it looked pretty so I saved it
+"""
+def polygon_with_triangles(turtle, length, n):
+    angle = 360/n
+    for i in range(n):
+        triangle_no_angle(turtle, length)
+        turtle.fd(length)
+        turtle.lt(angle)
+
+polygon_with_triangles(turtle, 40, 5)
+"""
+"""
+def polygon_with_triangles(turtle, length, n):
+    angle = 360/n
+    for i in range(n):
+        triangle(turtle, length, angle)
+        turtle.fd(length)
+        turtle.lt(angle)
+
+polygon_with_triangles(turtle, 100, 5)
+
+
+screen.exitonclick()
+
+"""
+
+def square(t, length):
+    """Draws a square with sides of the given length.
+
+    Returns the Turtle to the starting position and location.
+    """
+    for i in range(4):
+        t.fd(length)
+        t.lt(90)
+
+
+def polyline(t, n, length, angle):
+    """Draws n line segments.
+
+    t: Turtle object
+    n: number of line segments
+    length: length of each segment
+    angle: degrees between segments
+    """
+    for i in range(n):
+        t.fd(length)
+        t.lt(angle)
+
+
+def polygon(t, n, length):
+    """Draws a polygon with n sides.
+
+    t: Turtle
+    n: number of sides
+    length: length of each side.
+    """
+    angle = 360.0/n
+    polyline(t, n, length, angle)
+
+
+def arc(t, r, angle):
+    """Draws an arc with the given radius and angle.
+
+    t: Turtle
+    r: radius
+    angle: angle subtended by the arc, in degrees
+    """
+    arc_length = 2 * math.pi * r * abs(angle) / 360
+    n = int(arc_length / 4) + 3
+    step_length = arc_length / n
+    step_angle = float(angle) / n
+
+    # making a slight left turn before starting reduces
+    # the error caused by the linear approximation of the arc
+    t.lt(step_angle/2)
+    polyline(t, n, step_length, step_angle)
+    t.rt(step_angle/2)
+
+
+def circle(t, r):
+    """Draws a circle with the given radius.
+
+    t: Turtle
+    r: radius
+    """
+    arc(t, r, 360)
+
+
+"""
+seven_angle = 360/7
+rotate_seven_angle = 180 - seven_angle
+
+arc(turtle, 100, seven_angle)
+turtle.lt(rotate_seven_angle)
+arc(turtle, 100, seven_angle)
+
+turtle.lt(rotate_seven_angle)
+turtle.lt(seven_angle)
+
+arc(turtle, 100, seven_angle)
+turtle.lt(rotate_seven_angle)
+arc(turtle, 100, seven_angle)
+turtle.lt(rotate_seven_angle)
+turtle.lt(seven_angle)
+
+arc(turtle, 100, seven_angle)
+turtle.lt(rotate_seven_angle)
+arc(turtle, 100, seven_angle)
+turtle.lt(rotate_seven_angle)
+turtle.lt(seven_angle)
+
+arc(turtle, 100, seven_angle)
+turtle.lt(rotate_seven_angle)
+arc(turtle, 100, seven_angle)
+turtle.lt(rotate_seven_angle)
+turtle.lt(seven_angle)
+
+
+arc(turtle, 100, seven_angle)
+turtle.lt(rotate_seven_angle)
+arc(turtle, 100, seven_angle)
+turtle.lt(rotate_seven_angle)
+turtle.lt(seven_angle)
+
+arc(turtle, 100, seven_angle)
+turtle.lt(rotate_seven_angle)
+arc(turtle, 100, seven_angle)
+turtle.lt(rotate_seven_angle)
+turtle.lt(seven_angle)
+
+arc(turtle, 100, seven_angle)
+turtle.lt(rotate_seven_angle)
+arc(turtle, 100, seven_angle)
+turtle.lt(rotate_seven_angle)
+turtle.lt(seven_angle)
+
+
+"""
+
+
+"""
+arc(turtle, 100, 100)
+turtle.lt(80)
+arc(turtle, 100, 100)
+turtle.lt(180)
+
+arc(turtle, 100, 100)
+turtle.lt(80)
+arc(turtle, 100, 100)
+turtle.lt(180)
+"""
+
+
+def basic_flower(t, r, n): #The size of the petals get smaller with more petals
+    starting_angle = 360/n #Angle of the petal's beginning
+    returning_angle = 180 - starting_angle #Angle at the petal tip to return to starting position 
+    
+    for i in range(n):
+        #Petals
+        arc(t, r, starting_angle)
+        t.lt(returning_angle)
+        arc(t, r, starting_angle)
+
+        #Set up cursor for next petal
+        t.lt(returning_angle)
+        t.lt(starting_angle)
+
+#basic_flower(turtle, 100, 7)
+#basic_flower(turtle, 300, 20)
+
+#basic_flower(turtle, 100, 10)
+#basic_flower(turtle, 200, 10)
+
+
+
+def angled_flower(t, r, n, angle): #The size of the petals get smaller with more petals
+    returning_angle = 180 - angle #Angle at the petal tip to return to starting position 
+    
+    for i in range(n):
+        #Petals
+        arc(t, r, angle)
+        t.lt(returning_angle)
+        arc(t, r, angle)
+
+        #Set up cursor for next petal
+        t.lt(returning_angle)
+        t.lt(angle)
+
+    t.lt(returning_angle)
+
+def angled_flower_overlapped(t, r, n, angle):
+    angled_flower(t, r, n, angle)
+    angled_flower(t, r, n, angle)
+
+turtle.speed(20)
+
+#angled_flower_overlapped(turtle, 100, 5, 72) #360/5 = angle
+
+
+
+"""
+Actual Solution:
+"""
+
+def petal(t, r, angle):
+    """Draws a petal using two arcs.
+
+    t: Turtle
+    r: radius of the arcs
+    angle: angle (degrees) that subtends the arcs
+    """
+    for i in range(2): #Same as my petal technique, just more cleanly written
+        arc(t, r, angle)
+        t.lt(180-angle)
+
+
+def flower(t, n, r, angle):
+    """Draws a flower with n petals.
+
+    t: Turtle
+    n: number of petals
+    r: radius of the arcs
+    angle: angle (degrees) that subtends the arcs
+    """
+    for i in range(n):
+        petal(t, r, angle)
+        t.lt(360.0/n) #This is basically the only difference. 
+
+
+flower(turtle, 10, 40.0, 80.0)
+
+#screen.exitonclick()
+
+"""
+polygon(turtle, 5, 100)
+
+turtle.forward(100)
+turtle.lt(126)
+
+
+
+turtle.forward(100)
+turtle.lt(108)
+
+turtle.forward(100)
+turtle.lt(126)
+
+
+
+"""
+
+"""
+polygon(turtle, 3, 100) #120 degrees
+turtle.forward(100)
+turtle.lt(72)
+
+polygon(turtle, 3, 100)
+turtle.forward(100)
+turtle.lt(72)
+
+polygon(turtle, 3, 100)
+turtle.forward(100)
+turtle.lt(72)
+
+polygon(turtle, 3, 100)
+turtle.forward(100)
+turtle.lt(72)
+
+polygon(turtle, 3, 100)
+"""
+"""
+def pie(t, n, length):
+    polygon(t, n, length)
+    angle = 360/n
+    for i in range(n):
+        polygon(t, 3, length)
+        turtle.forward(100)
+        turtle.lt(angle)
+
+
+#pie(turtle, 6, 100)
+pie(turtle, 8, 100)
+"""
+
+
+
+# the following condition checks whether we are
+# running as a script, in which case run the test code,
+# or being imported, in which case don't.
+"""
+if __name__ == '__main__':
+    bob = turtle.Turtle()
+
+    # draw a circle centered on the origin
+    radius = 100
+    bob.pu()
+    bob.fd(radius)
+    bob.lt(90)
+    bob.pd()
+    circle(bob, radius)
+
+    # wait for the user to close the window
+    turtle.mainloop()
+"""
