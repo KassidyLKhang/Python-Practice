@@ -11,13 +11,49 @@ print(time.time()) #Seconds since January 1, 1970 UTC
 #31536000 seconds in a year approx.
 
 def current_date():
-    date = time.time()
+    seconds = time.time()
+    seconds = seconds - 18000 #EST or 5 hours -> 18000 secs
 
-    date = date - 18000
+    days_float = seconds / 60 / 60 / 24 #Days since Epoch
+    days = seconds / 60 / 60 // 24 #Seconds -> Minutes -> Hours -> Full Days Since Epoch
 
-    date = date / 60 / 60 #Seconds -> Minutes -> Hours
+    days_float_only = days_float - days
+    today_hours = days_float_only * 24
 
-    print(date)
+    hours_float = seconds / 60 / 60 #Seconds -> Minutes -> Total hours since Epoch 
+    hours = seconds / 60 // 60 #Seconds -> Minutes -> Full hours since Epoch 
+
+    hours_float_only = hours_float - hours
+    today_minutes = hours_float_only * 60
+    
+    minutes_float = seconds / 60 #Seconds -> Total minutes since Epoch
+    minutes = seconds // 60 #Seconds -> Full minutes since Epoch
+
+    minutes_float_only = minutes_float - minutes
+    today_seconds = minutes_float_only * 60
+
+
+    print("Days:\n")
+    print(days)
+    print(days_float)
+    print(days_float_only)
+
+    print("Hours:\n")
+    print(hours)
+    print(hours_float)
+    print(today_hours)
+
+    print("Minutes:\n")
+    print(minutes_float)
+    print(minutes)
+    print(today_minutes)
+
+    print("Seconds:\n")
+    print(today_seconds)
+
+    current_time = f"It has been {int(days)} days since the epoch. Time is {int(today_hours)}:{int(today_minutes)}:{int(today_seconds)} (ETC)"
+
+    print(current_time)
 
 current_date()
 
