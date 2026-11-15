@@ -3,7 +3,7 @@ import time
 """
 Chapter 5 Exercise 1
 """
-print(time.time()) #Seconds since January 1, 1970 UTC
+#print(time.time()) #Seconds since January 1, 1970 UTC
 
 #Subtract 5 hours to convert to EST
 #Or 18000 seconds
@@ -55,7 +55,7 @@ def current_date():
 
     print(current_time)
 
-current_date()
+#current_date()
 
 
 
@@ -88,7 +88,32 @@ def check_input_fermat():
 Chapter 5 Exercise 3
 """
 
+def is_triangle(a, b, c):
+    is_triangle = True
 
+    if (a + b) < c:
+        is_triangle = False
+    elif (a + c) < b:
+        is_triangle = False
+    elif (b + c) < a:
+        is_triangle = False
+
+    if is_triangle:
+        print("Yes")
+    else:
+        print("No")
+
+is_triangle(1,2,3)
+
+def check_triangle():
+    print("Input the size of three lengths to check if it would make a triangle!")
+    a = int(input("Side a:\n"))
+    b = int(input("Side b:\n"))
+    c = int(input("Side c:\n"))
+
+    is_triangle(a, b, c)
+
+check_triangle()
 
 
 """
