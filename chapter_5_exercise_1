@@ -1,0 +1,127 @@
+import time
+
+"""
+Chapter 5 Exercise 1
+"""
+print(time.time()) #Seconds since January 1, 1970 UTC
+
+#Subtract 5 hours to convert to EST
+#Or 18000 seconds
+
+#31536000 seconds in a year approx.
+
+def current_date():
+    date = time.time()
+
+    date = date - 18000
+
+    date = date / 60 / 60 #Seconds -> Minutes -> Hours
+
+    print(date)
+
+current_date()
+
+
+
+"""
+Chapter 5 Exercise 2
+"""
+
+def check_fermat(a, b, c, n):
+    if n > 2:
+        if ((a**n + b**n) == c**n):
+            print("Holy smokes, Fermat was wrong!")
+        else:
+            print("No, that doesn't work.")
+    else:
+        print("Oi, n isn't greater than 2.")
+
+def check_input_fermat():
+    print("Let's test Fermat's Last Theorem!")
+    a = int(input("Pick a value for a:\n"))
+    b = int(input("Pick a value for b:\n"))
+    c = int(input("Pick a value for c:\n"))
+    n = int(input("Pick a value for n:\n"))
+
+    check_fermat(a, b, c, n)
+
+#check_input_fermat()
+
+
+"""
+Chapter 5 Exercise 3
+"""
+
+
+
+
+"""
+Chapter 5 Exercise 4
+"""
+
+"""
+Without using the function,
+
+recurse(3,0)
+->
+
+recurse(2, 3+0) or recurse(2,3)
+recurse(1, 2+3) or recurse(1,5)
+recurse(0, 1+5) or print(s) -> print 6
+
+
+Example with s = 1
+recurse(3,1)
+->
+
+recurse(2, 3+1) or recurse(2,4)
+recurse(1, 2+4) or recurse(1,6)
+recurse(0, 1+6) or print(s) -> print 7
+
+
+1. recurse(-1, 0) = ?
+Infinite Recursion (or 1000 recurse frames (max recursion) until compiler throws error).
+
+2. Docstring
+Recurse n times and add n with n-1 until n is 0, plus a value of s. 
+
+Or, add n with itself decremented by 1 until 0, and add s, too.
+
+It returns s + (n + n-1). 
+
+f(0) = 0
+f(n) = n + f(n-1)
+
+#This is the function written mathematically
+f(0, s) = 0
+f(n, s) = n + f(n-1) + s
+
+"""
+
+
+"""
+Had to write this to figure out how to write a recursive equation for the above function.
+"""
+def n_factorial(n):
+    if n <= 0:
+        return 1
+    else:
+        return n * n_factorial(n-1) # or n! = n(n-1)!
+
+#print(n_factorial(6))
+
+
+#Use this to check work!
+def recurse(n, s):
+    if n == 0:
+        print(s)
+    else:
+        recurse(n-1, n+s)
+
+#recurse(3, 0)
+
+
+"""
+Chapter 5 Exercise 5
+"""
+
