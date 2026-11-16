@@ -1,4 +1,7 @@
 import time
+import turtle
+
+screen = turtle.Screen()
 
 """
 Chapter 5 Exercise 1
@@ -103,7 +106,7 @@ def is_triangle(a, b, c):
     else:
         print("No")
 
-is_triangle(1,2,3)
+#is_triangle(1,2,3)
 
 def check_triangle():
     print("Input the size of three lengths to check if it would make a triangle!")
@@ -113,7 +116,7 @@ def check_triangle():
 
     is_triangle(a, b, c)
 
-check_triangle()
+#check_triangle()
 
 
 """
@@ -155,7 +158,7 @@ f(n) = n + f(n-1)
 
 #This is the function written mathematically
 f(0, s) = 0
-f(n, s) = n + f(n-1) + s
+f(n, s) = n + f(n-1, n+s) + s
 
 """
 
@@ -184,5 +187,188 @@ def recurse(n, s):
 
 """
 Chapter 5 Exercise 5
+
+This one actually doesn't involve coding. It's just to read the function to see if you can understand what it does.
+
+To be honest, I don't understand the order of operations with recursion well enough to answer confidently, so I made an example code to help.
+
+Recursion
+
+Move Length * n and turn 50 left
+Call Draw n-1
+Move Length * (n - 1) and turn 50 left until n == 0  || Move a smaller lengths with 50 degree left turns between
+
+After n == 0, we can move on to the next steps
+
+There is going to be a 100 degree angle
+
+
+E.G.
+draw(t, 5, 3)
+    if n == 0:
+            return
+        
+    angle = 50
+    t.fd(length*n)
+    t.lt(angle)
+
+    draw(t, length, n-1) -> draw(t, 5, 2)
+...
+draw(t, 5, 2)
+    if n == 0:
+        return
+        
+    angle = 50
+    t.fd(length*n)
+    t.lt(angle)
+
+    draw(t, length, n-1) -> draw(t, 5, 1)
+...
+draw(t, 5, 1)
+    if n == 0:
+        return
+        
+    angle = 50
+    t.fd(length*n)
+    t.lt(angle)
+
+    draw(t, length, n-1) -> draw(t, 5, 0) -> Stop!
+
+
+draw(t, 5, 3)
+    
+
 """
 
+def draw(t, length, n):
+    if n == 0:
+        return
+    
+    angle = 50
+    t.fd(length*n)
+    t.lt(angle) #Travel length * 2 and turn 50
+
+    draw(t, length, n-1)
+
+    t.rt(2*angle) #Turn 100
+
+    draw(t, length, n-1)
+
+    t.lt(angle)
+    t.bk(length*n) #Turn 50 and back up length * 2  
+
+
+#draw(turtle, 100, 2)
+
+
+def recur_test(n):
+    if n <= 0:
+        print("0!")
+        return
+    
+    print(f"Charmander does something {n} times!") #n to 0
+
+    recur_test(n-1)
+
+    print(f"Squirtle does something {n} times!")
+
+    recur_test(n-1)
+
+    print(f"Bulbasaur does something {n} times!")
+
+#recur_test(2)
+
+"""
+Charmander does something 2 times!
+Charmander does something 1 times!
+0!
+Squirtle does something 1 times!
+0!
+Bulbasaur does something 1 times!
+Squirtle does something 2 times!
+Charmander does something 1 times!
+0!
+Squirtle does something 1 times!
+0!
+Bulbasaur does something 1 times!
+Bulbasaur does something 2 times!
+
+What Happened:
+First line of code runs from n to 1
+Base case is met for the next recusive calls, so Second and Third line of code run at n = 1
+
+Back up to n = 2 at Second line of code
+
+Recursive call occurs for n = 1, repeat what happened above
+
+Back up to n = 2 at Third line of code, which runs without any further recursion
+
+
+If it helps, Imagine that n = 2 is the "foundation". We make detours to n = 1, but return to n = 2 to finish it's code.
+
+"""
+
+    
+
+
+
+
+"""
+Chapter 5 Exercise 5
+"""
+
+def koch(t, length):
+    if length < 3:
+        t.fd(length)
+        return
+
+    koch(t, length/3)
+
+    t.lt(60)
+
+    koch(t, length/3)
+
+    t.rt(120) #Right 60
+
+    koch(t, length/3)
+
+    t.lt(60)
+
+    koch(t, length/3)
+
+
+turtle.speed(50)
+#koch(turtle, 300) #Same/Similar Shape to the figure in Part 1 of the Exercise
+
+#turtle.speed("normal")
+
+def snowflake(t, length, n):
+    angle = 360/n
+    for i in range(n):
+        koch(t, length)
+        t.lt(angle)
+
+#snowflake(turtle, 30, 3)
+#snowflake(turtle, 30, 6)
+
+
+def cesaro(t, length):
+    if length < 3:
+        t.fd(length)
+        return
+
+    cesaro(t, length/3)
+    t.lt(90)
+
+    cesaro(t, length/3)
+    t.lt(90)
+
+    cesaro(t, length/3)
+    t.lt(90)
+
+    cesaro(t, length/3)
+    t.lt(90)
+
+cesaro(turtle, 400)
+
+screen.exitonclick()
