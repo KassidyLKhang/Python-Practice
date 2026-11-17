@@ -352,6 +352,10 @@ def snowflake(t, length, n):
 #snowflake(turtle, 30, 6)
 
 
+"""
+Yeah, I think the triangle Koch curve was enough practice.
+"""
+
 def cesaro(t, length):
     if length < 3:
         t.fd(length)
