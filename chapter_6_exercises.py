@@ -109,6 +109,7 @@ snake = "Snake"
 odd_palindrome = "wasdqdsaw"
 even_palindrome = "wasddsaw"
 
+"""
 print(first(b))
 print(first(at))
 #print(first(empty)) #Error out of index
@@ -130,6 +131,7 @@ print(hello[:(len(hello)//2)] + ":O")
 print(snake[:(len(snake)//2)])
 print(snake[(len(snake)//2):len(snake)])
 print(snake[(len(snake)//2)+1:len(snake)])
+"""
 
 #Method 1: Check each string from start and end until they are next to each other or become the same index
 #Method 2: If even compare string from 
@@ -141,17 +143,134 @@ def is_palidrome(string):
     string_length = len(string)
     half_index = len(string)//2
 
+    first_half_even = string[:half_index]
+    first_half_odd = string[:half_index + 1]
+    second_half = "".join(reversed(string[half_index:string_length]))
+
     if len(string) % 2 == 0:
-        if string[:half_index] != string[half_index:string_length]:
+        if first_half_even != second_half:
             is_palindrome = False
     elif len(string) % 2 == 1:
-        if string[:half_index + 1] != string[half_index:string_length]: 
+        if first_half_odd != second_half: 
             is_palindrome = False
 
     return is_palindrome
 
+"""
 print(is_palidrome(hello))
 print(is_palidrome(even_palindrome))
 print(is_palidrome(odd_palindrome))
+"""
 
-        
+
+"""
+Exercise 4
+
+a is power of b if:
+a % b == 0 and a/b is a power of b
+
+b**4
+
+4/b?
+4/2 True!
+4/3 False!
+
+a % b == 0
+
+a/b % b == 0
+
+a != 1
+
+a == a/b
+
+b != 0
+
+3**2 = 9
+9 % 3 = 0
+9/3 % 3 = 3 % 3 = 0
+
+3/3 % 3 = 1 % 3 = 
+
+a = 1
+
+
+8 = 2 ** 3
+4 = 2 ** 2
+
+
+(a/b) % b == 0
+
+
+a = b 
+
+2**3 = 8
+8 % 2 = 0
+4 % 2 = 0
+2 % 2 = 0
+1 % 2 = 1 #Have to stop here
+
+5,2
+5 % 2 = 1 #NOPE
+
+
+(1,1)
+
+1 % 1 = 0
+1/1 % 1 = 0
+
+if a >= b and b > 0:
+    a % b == 0
+    is power
+"""
+
+#1 is only power of 1, 0 is only power of 0, non zero num ** 0 == 1
+def is_power(a, b):
+    if a == 1:
+        return True
+    elif b == 0 and a == 0:
+        return True
+    elif b == 0:
+        return False
+    
+    if a % b == 0:
+        return is_power(a/b,b)
+    else:
+        return False
+
+#print(is_power(9,3))
+#print(is_power(16,4))
+#print(is_power(15,4))
+#print(is_power(1,1))
+#print(is_power(0,0)) #Max Depth
+
+
+
+"""
+Exercise 5
+
+a % b = r
+
+gcd(a,0) = a        b = 0
+gcd(a,b) = gcd(b,r)
+
+
+E.G.
+
+50 & 100
+GCD = 50
+
+Please put greater number as a.
+a >= b please
+
+"""
+
+def gcd(a,b):
+    if b == 0:
+        return a
+
+    return gcd(b, a%b)
+
+print(gcd(100,50))
+print(gcd(15,3))
+print(gcd(15,12))
+print(gcd(15,4))
