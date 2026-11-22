@@ -74,14 +74,15 @@ Good example of how to write a recursive function mathematically and programmati
 Also, if using larger arguments, it will cause a maximum recusion depth error.
 
 """
-
+#ack(1,1)
 def ack(m, n):
     if m == 0:
         return n + 1
     elif m > 0 and n == 0:
         return ack(m - 1, 1)
     elif m > 0 and n > 0:
-        return ack(m - 1, ack(m, n - 1))
+        return ack(m - 1, ack(m, n - 1)) # ack(0, ack(1,0)) ack(1, 0) -> ack(0,1) == 2
+#ack(0, 2) -> 3
 
 #print(ack(3,4))
 #print(ack(300,400)) #Max depth reached
@@ -158,9 +159,24 @@ def is_palidrome(string):
 
 """
 print(is_palidrome(hello))
+print(is_palidrome("4334"))
 print(is_palidrome(even_palindrome))
 print(is_palidrome(odd_palindrome))
 """
+
+
+#Added function found online for fun!
+def is_palindrome_concise():
+    word = input("Enter a word: ")
+ 
+    if word == word[::-1]: #Reverses!
+        print("The word is a palindrome.")
+    else:
+        print("The word is not a palindrome.")
+
+#is_palindrome_concise()
+
+
 
 
 """
@@ -270,7 +286,7 @@ def gcd(a,b):
 
     return gcd(b, a%b)
 
-print(gcd(100,50))
-print(gcd(15,3))
-print(gcd(15,12))
-print(gcd(15,4))
+#print(gcd(100,50))
+#print(gcd(15,3))
+#print(gcd(15,12))
+#print(gcd(15,4))
