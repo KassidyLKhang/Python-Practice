@@ -124,6 +124,8 @@ def rotate_word(string, int):
         new_string += chr(new_letter_code)
     return new_string
 
+#Might try to write it with module
+
 """
 #26 letters in the alphabet
 #You could potentially hard code using the codes below. I'm just going to do what the book hinted.
