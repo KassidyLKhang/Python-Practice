@@ -88,8 +88,8 @@ def user_avoids():
 def uses_only(word, letters):
     uses_only = True
 
-    for letter in letters:
-        if letter not in word:
+    for letter in word:
+        if letter not in letters:
             #print(word, letter)
             uses_only = False
 
@@ -99,9 +99,55 @@ def uses_only(word, letters):
 #print("e" not in "eucalyptus")
 
 print(uses_only("ice","eci"))
+print(uses_only("icevice","eci"))
 print(uses_only("everest","eci"))
 print(uses_only("fractal","eci"))
 
 
 def uses_all(word, letters):
-    pass
+    uses_all = True
+    
+    for letter in letters:
+        if letter not in word:
+            #print(word, letter)
+            uses_all = False
+
+    return uses_all
+
+
+#print(uses_only("ice","eci"))
+#print(uses_only("icevice","eci"))
+#print(uses_only("everest","eci"))
+#print(uses_only("fractal","eci"))
+
+
+def is_abecedarian(word):
+    alphabetical_tracker = ord("a")
+
+    for letter in word:
+        #print(alphabetical_tracker, ord(letter))
+        if ord(letter) < alphabetical_tracker:
+            return False
+        else:
+            alphabetical_tracker = ord(letter)
+
+    return True
+
+#print(is_abecedarian("army"))
+#print(is_abecedarian("aabc"))
+
+
+def check_alphabetical():
+    count = 0
+
+    for line in fin:
+        line = fin.readline()
+        word = "".join(line.split())
+
+        if is_abecedarian(word):
+            count += 1
+            print(word)
+
+    return count
+
+#print(check_alphabetical())
